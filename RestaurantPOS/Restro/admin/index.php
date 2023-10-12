@@ -49,7 +49,7 @@ require_once('partials/_head.php');
                     </div>
                     <input class="form-control" required name="admin_email" placeholder="Email" type="email">
                   </div>
-                </div><!-- For more projects: Visit codeastro.com  -->
+                </div>
                 <div class="form-group">
                   <div class="input-group input-group-alternative">
                     <div class="input-group-prepend">
@@ -63,7 +63,7 @@ require_once('partials/_head.php');
                   <label class="custom-control-label" for=" customCheckLogin">
                     <span class="text-muted">Lưu thông tin</span>
                   </label>
-                </div><!-- For more projects: Visit codeastro.com  -->
+                </div>
                 <div class="text-center">
                   <button type="submit" name="login" class="btn btn-primary my-4">Đăng nhập</button>
                 </div>

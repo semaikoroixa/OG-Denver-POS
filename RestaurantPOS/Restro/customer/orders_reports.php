@@ -56,7 +56,7 @@ require_once('partials/_head.php');
                                     $stmt->execute();
                                     $res = $stmt->get_result();
                                     while ($order = $res->fetch_object()) {
-                                        $total = ($order->prod_price . $order->prod_qty);
+                                        $total = (floatval($order->prod_price) * floatval($order->prod_qty));
 
                                     ?>
                                         <tr>

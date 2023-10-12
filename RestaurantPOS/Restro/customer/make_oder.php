@@ -25,6 +25,19 @@ if (isset($_POST['make'])) {
         //bind paramaters
         $rc = $postStmt->bind_param('ssssssss', $prod_qty, $order_id, $order_code, $customer_id, $customer_name, $prod_id, $prod_name, $prod_price);
         $postStmt->execute();
+
+        
+        // $postQuery1 = "INSERT INTO rpos_table (table_id,customer_id, customer_name,table_status,capacity) VALUES(?,?,?,?,?)";
+        // $postStmt1 = $mysqli->prepare($postQuery1);
+        // //bind paramaters
+        // $rc1 = $postStmt1->bind_param('sssss',$prod_qty, $customer_id, $customer_name, $prod_id, $prod_price);
+        // $postStmt1->execute();
+        // if ($postStmt1) {
+        //     $success = "Đơn đã đặt" && header("refresh:1; url=payments.php");
+        // } else {
+        //     $err = "Vui lòng thử lại sau!";
+        // }
+
         //declare a varible which will be passed to alert function
         if ($postStmt) {
             $success = "Đơn đã đặt" && header("refresh:1; url=payments.php");

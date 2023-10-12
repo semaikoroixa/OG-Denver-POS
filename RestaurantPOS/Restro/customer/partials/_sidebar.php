@@ -98,6 +98,11 @@ while ($customer = $res->fetch_object()) {
             </a>
           </li>
           <li class="nav-item">
+            <a class="nav-link" href="table_orders.php">
+              <i class="ni ni-tv-2 text-primary"></i> Quản lý bàn
+            </a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link" href="payments.php">
               <i class="ni ni-credit-card text-primary"></i> Thanh toán
             </a>

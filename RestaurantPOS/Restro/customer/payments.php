@@ -48,7 +48,7 @@ require_once('partials/_head.php');
                         <div class="card-header border-0">
                             <a href="orders.php" class="btn btn-outline-success">
                                 <i class="fas fa-plus"></i> <i class="fas fa-utensils"></i>
-                                Tạo đơn đặt món mới
+                                Thêm món mới
                             </a>
                         </div>
                         <div class="table-responsive">
@@ -58,11 +58,14 @@ require_once('partials/_head.php');
                                         <th scope="col">Code</th>
                                         <th scope="col">Khách hàng</th>
                                         <th scope="col">Sản phẩm</th>
-                                        <th scope="col">Tổng tiền</th>
+                                        <th scope="col">Đơn giá</th>
                                         <th scope="col">Thời gian</th>
                                         <th scope="col">Thực hiện</th>
                                     </tr>
                                 </thead>
+                                <?php 
+                                $full_total=0;
+                                ?>
                                 <tbody>
                                     <?php
                                     $customer_id = $_SESSION['customer_id'];
@@ -71,7 +74,8 @@ require_once('partials/_head.php');
                                     $stmt->execute();
                                     $res = $stmt->get_result();
                                     while ($order = $res->fetch_object()) {
-                                        $total = ($order->prod_price . $order->prod_qty);
+                                        $total = (floatval($order->prod_price) * floatval($order->prod_qty));
+                                        $full_total+=$total;
 
                                     ?>
                                         <tr>
@@ -81,12 +85,12 @@ require_once('partials/_head.php');
                                             <td>$ <?php echo $total; ?></td>
                                             <td><?php echo date('d/M/Y g:i', strtotime($order->created_at)); ?></td>
                                             <td>
-                                                <a href="pay_order.php?order_code=<?php echo $order->order_code;?>&customer_id=<?php echo $order->customer_id;?>&order_status=Paid">
+                                                <!-- <a href="pay_order.php?order_code=<?php echo $order->order_code;?>&customer_id=<?php echo $order->customer_id;?>&order_status=Paid">
                                                     <button class="btn btn-sm btn-success">
                                                         <i class="fas fa-handshake"></i>
                                                         Thanh toán
                                                     </button>
-                                                </a>
+                                                </a> -->
 
                                                 <a href="payments.php?cancel=<?php echo $order->order_id; ?>">
                                                     <button class="btn btn-sm btn-danger">
@@ -96,7 +100,40 @@ require_once('partials/_head.php');
                                                 </a>
                                             </td>
                                         </tr>
-                                    <?php } ?>
+                                    <?php } 
+                                    
+                                    ?>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table align-items-center table-flush">
+                                <thead class="thead-light">
+                                    <tr>
+                                        <th scope="col"></th>
+                                        <th scope="col"></th>
+                                        <th scope="col"></th>
+                                        <th scope="col">Tổng tiền</th>
+                                        <th scope="col"></th>
+                                        <th scope="col"></th>
+                                    </tr>
+                                </thead>
+                                <?php 
+                             
+                                ?>
+                                <tbody>
+                                    
+                                        <tr>
+                                            <th></th>
+                                            <td></td>
+                                            <td></td>
+                                            <td>$ <?php echo $full_total; ?></td>
+                                            <td></td>
+                                            
+                                        </tr>
+                                    <?php 
+                                    
+                                    ?>
                                 </tbody>
                             </table>
                         </div>

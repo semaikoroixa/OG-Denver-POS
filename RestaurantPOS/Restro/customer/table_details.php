@@ -3,6 +3,20 @@ session_start();
 include('config/config.php');
 include('config/checklogin.php');
 check_login();
+//Cancel Order
+if (isset($_GET['cancel'])) {
+    $id = $_GET['cancel'];
+    $adn = "DELETE FROM  rpos_orders  WHERE  order_id = ?";
+    $stmt = $mysqli->prepare($adn);
+    $stmt->bind_param('s', $id);
+    $stmt->execute();
+    $stmt->close();
+    if ($stmt) {
+        $success = "Đã xóa" && header("refresh:1; url=payments.php");
+    } else {
+        $err = "Vui lòng thử lại sau";
+    }
+}
 require_once('partials/_head.php');
 ?>
 
@@ -32,49 +46,65 @@ require_once('partials/_head.php');
                 <div class="col">
                     <div class="card shadow">
                         <div class="card-header border-0">
-                            Báo Cáo Đơn
+                            <a href="orders.php" class="btn btn-outline-success">
+                                <i class="fas fa-plus"></i> <i class="fas fa-utensils"></i>
+                                Đặt đơn mới
+                            </a>
                         </div>
                         <div class="table-responsive">
                             <table class="table align-items-center table-flush">
                                 <thead class="thead-light">
                                     <tr>
-                                        <th class="text-success" scope="col">Code</th>
+                                        <th scope="col">Mã</th>
                                         <th scope="col">Khách hàng</th>
-                                        <th class="text-success" scope="col">Sản phẩm</th>
-                                        <th scope="col">Giá</th>
-                                        <th class="text-success" scope="col">#</th>
+                                        <th scope="col">Sản phẩm</th>
                                         <th scope="col">Tổng giá</th>
-                                        <th scop="col">Trạng thái</th>
-                                        <th scope="col">Thời gian</th>
+                                        <th scope="col">Ngày</th>
+                                        <th scope="col">Thực hiện</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php
-                                    $ret = "SELECT * FROM  rpos_orders ORDER BY `created_at` DESC  ";
+                                    if (isset($_GET['customer_id'])) {
+                                      
+                                        $customer_id = $_GET['customer_id'];
+                                    $ret = "SELECT * FROM  rpos_orders WHERE order_status ='' and customer_id='$customer_id' ORDER BY `rpos_orders`.`created_at` DESC  ";
                                     $stmt = $mysqli->prepare($ret);
                                     $stmt->execute();
                                     $res = $stmt->get_result();
                                     while ($order = $res->fetch_object()) {
+                                        // $total = ($order->prod_price * $order->prod_qty);
                                         $total = (floatval($order->prod_price) * floatval($order->prod_qty));
-
-                                        // $total = ($order->prod_price.$order->prod_qty);
-
                                     ?>
                                         <tr>
                                             <th class="text-success" scope="row"><?php echo $order->order_code; ?></th>
                                             <td><?php echo $order->customer_name; ?></td>
-                                            <td class="text-success"><?php echo $order->prod_name; ?></td>
-                                            <td>$ <?php echo $order->prod_price; ?></td>
-                                            <td class="text-success"><?php echo $order->prod_qty; ?></td>
+                                            <td><?php echo $order->prod_name; ?></td>
                                             <td>$ <?php echo $total; ?></td>
-                                            <td><?php if ($order->order_status == '') {
-                                                    echo "<span class='badge badge-danger'>Chưa thanh toán</span>";
-                                                } else {
-                                                    echo "<span class='badge badge-success'>$order->order_status</span>";
-                                                } ?></td>
                                             <td><?php echo date('d/M/Y g:i', strtotime($order->created_at)); ?></td>
+                                            <td>
+                                                <!-- <a href="pay_order.php?order_code=<?php echo $order->order_code;?>&customer_id=<?php echo $order->customer_id;?>&order_status=Paid">
+                                                    <button class="btn btn-sm btn-success">
+                                                        <i class="fas fa-handshake"></i>
+                                                        Thanh toán
+                                                    </button>
+                                                </a> -->
+
+                                                <a href="payments.php?cancel=<?php echo $order->order_id; ?>">
+                                                    <button class="btn btn-sm btn-danger">
+                                                        <i class="fas fa-window-close"></i>
+                                                        Hủy đơn
+                                                    </button>
+                                                </a>
+                                            </td>
                                         </tr>
-                                    <?php } ?>
+                                    <?php }
+                                }
+                             else {
+                                
+                                echo "Không có thông tin khách hàng được cung cấp.";
+                            } ?>
+                                    
                                 </tbody>
                             </table>
                         </div>

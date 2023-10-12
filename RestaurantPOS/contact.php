@@ -1,19 +1,35 @@
+<?php 
+    //Tạo kết nối đến DB
+    $con=mysqli_connect('localhost','root','','rposystem')
+    or die('Lỗi kết nối');
+    //Tạo và thực hiện chèn dl vào bảng lienhe
+    $ht='';$sdt='';$em='';$cd='';$tn='';
+    if(isset($_POST['btnLuu'])){
+        $ht=$_POST['txtHoten'];
+        $sdt=$_POST['txtSodienthoai'];
+        $em=$_POST['txtEmail'];
+        $cd=$_POST['txtChude'];
+        $tn=$_POST['txtTinnhan'];     
+                echo "<script>alert('Lời nhắn của bạn đã được ghi nhận! Chúng tôi sẽ phản hồi lại sớm nhất!')</script>";
+    }
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Về chúng tôi | The OG Denver</title>
+    <title>Liên hệ | The OG Denver</title>
     <link rel="shortcut icon" href="./images/download.ico" type="image/x-icon">
     <link rel="stylesheet" href="./reset.css">
     <link rel="stylesheet" href="./globalStyles.css">
     <link rel="stylesheet" href="./components.css">
-    <link rel="stylesheet" href="./about.css">
     <!-- aos css -->
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 </head>
 <body>
     <!--Nav Section  -->
+    
     <div class="nav">
         <div class="container">
           <div class="nav__wrapper">
@@ -41,12 +57,11 @@
                   </svg>
                 </div>
                 <div class="nav__list__wrapper">
-    
                   <li><a class="nav__link" href="./index.php">Home</a></li>
                   <li><a class="nav__link" href="./menu.html">Menu</a></li>
                   <li><a class="nav__link" href="./about.html">Về chúng tôi</a></li>
                   <li><a class="nav__link" href="./contact.php">Liên hệ</a></li>
-                  <li><a href="index.html" class="btn primary-btn">Đăng nhập</a></li>
+                  <li><a href="./index.html" class="btn primary-btn">Đăng nhập</a></li>
                 </div>
               </ul>
             </nav>
@@ -54,118 +69,64 @@
         </div>
       </div>
  <!-- End Nav Section -->
-   <!-- Our Story -->
-    <section id="ourStory">
-        <div class="container">
-            <div class="ourStory__wrapper">
-                <div class="ourStory__img" data-aos="fade-right">
-                    <!-- <img src="/images/ourStoryImg.png" alt=""> -->
-                    <img src="./images/eventsMedia3.png" alt="">
-                </div>
-                <div class="ourStory__info" data-aos="fade-left">
-                    <h3 class="ourStory__title">
-                        Giới Thiệu
-                    </h3>
-                    
-                    <p class="ourStory__subtitle">
-                        OG Denver - 2009
-                    </p>
-                    <p class="ourStory__text">
-                        Chào mừng quý khách đến với OG Denver. Chúng tôi hân hạnh được phục vụ quý vị bằng sự nhiệt huyết, tận tâm phục vụ cùng với những
-                        bữa ăn ngon miệng nhất. Tiêu chí hàng đầu của nhà hàng chúng tôi là luôn sử dụng thực phẩm sạch, chất lượng, đảm bảo quý khách sẽ có một
-                        trải nghiệm ẩm thực đáng nhớ tại đây.
-                        <br></br>
-                        Bắt đầu từ năm 2009, chúng tôi đã và đang trở thành một địa điểm tuyệt vời để thưởng thức những món ăn tuyệt vời cho mọi lứa tuổi, mọi gia đình
-                        và cá nhân. Với cơ sở vật chất luôn được tân trang sạch sẽ cùng không gian rộng rãi, thoáng mát, chúng tôi vinh dự được phục vụ cho hàng trăm khách hàng 
-                        cùng một thời điểm.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-   <!-- End -->
 
-   <!-- Goals -->
-    <section id="ourGoals" data-aos="fade-down">
-        <div class="container">
-            <div class="ourGoals__info">
-                <h3 class="ourGoals__title">
-                    Mục Tiêu
-                </h3>
-                <p class="ourGoals__text">
-                    Chúng tôi luôn mang đến những món ăn tuyệt hảo và ngon miệng với chất lượng đảm bảo sạch sẽ, vệ sinh, luôn
-                    tươi mới cho khách hàng, kết hợp cùng phong cách nấu ăn cổ điển pha lẫn chút hiện đại, tạo cho quý vị cảm giác thỏa mãn nhất 
-                    khi thưởng thức hương vị ẩm thực. Bằng sự biết ơn với khách hàng cùng tác phong chuyên nghiệp, chúng tôi sẽ luôn phục vụ với tinh
-                    thần trách nhiệm cao nhất, mong muốn tạo cho khách hàng sự thoải mái nhất khi tới nhà hàng của chúng tôi. OG Denver mong muốn mỗi một
-                    khách hàng khi ra về sẽ luôn ấn tượng bởi những gì chúng tôi mang đến cho các bạn và hứng thú để có thể quay trở lại đây một lần nữa.
-                </p>
-            </div>
-            <div class="ourGoals__imgs__wrapper">
-                <div class="ourGoals__img1">
-                    <img src="./images/ourGoals_img1.png" alt="">
-                </div>
-                <div class="ourGoals__img2">
-                    <img src="./images/ourGoals_img2.png" alt="">
-                </div>
-                <div class="ourGoals__img3">
-                    <img src="./images/ourGoals_img3.png" alt="">
-                </div>
-            </div>
-        </div>
-    </section>
-   <!-- end Goals -->
-<!-- Chef -->
-    <section id="chef" >
-        <div class="container">
-            <div class="chef__title" data-aos="fade-up-right">
-                <h1 class="chef__title__text">
-                    Đầu Bếp Hàng Đầu
-                </h1>
-            </div>
-            <div class="chef__row">
-                <div class="chef__column" data-aos="fade-up-left">
-                    <div class="chef__card">
-                        <div class="chef__img__container">
-                            <img src="./images/tinhhai.png" alt="">
-                        </div>
-                        <h3 class="chef__name">
-                            Phan Tôn Tịnh Hải
-                        </h3>
-                        <p class="chef__info">
-                            Founder | Bếp trưởng
-                        </p>
-                    </div>
-                </div>
-                <div class="chef__column" data-aos="fade-down-left">
-                    <div class="chef__card">
-                        <div class="chef__img__container">
-                            <img src="./images/nguyendanhhinh.png" alt="">
-                        </div>
-                        <h3 class="chef__name">
-                            Nguyễn Danh Hinh
-                        </h3>
-                        <p class="chef__info">
-                            CH Trưởng | Bếp Phó
-                        </p>
-                    </div>
-                </div>
-                <div class="chef__column"  data-aos="fade-down-right">
-                    <div class="chef__card">
-                        <div class="chef__img__container">
-                            <img src="./images/beppho.png" alt="">
-                        </div>
-                        <h3 class="chef__name">
-                            Trương Đình Nam
-                        </h3>
-                        <p class="chef__info">
-                            CH Phó | Bếp Phó
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-<!-- End chef -->
+        
+
+ <!-- phần ảnh mở đầu -->
+ 
+
+ <!-- end -->
+    <!-- Store Info Section -->
+   
+
+
+        </section>
+        <!-- End Store Info Section -->
+
+        <!-- Contact form section -->
+        <section id="form" data-aos="fade-down">
+    <div class="container">
+    <h3 class="form__title">
+        LIÊN HỆ VỚI CHÚNG TÔI
+    </h3>
+    <div class="form__text">
+        <br>
+        <br>
+        <br>
+        <p>Hãy để chúng tôi biết nếu bạn có bất kỳ câu hỏi, thắc mắc hay góp ý nào</p>
+        <p>Chúng tôi sẽ cố gắng hồi đáp nhanh nhất có thể. Đừng ngần ngại, hãy liên hệ với chúng tôi ngay bây giờ!</p>
+    </div>
+      <div class="form__wrapper">
+        <form name="contact" method="POST" netlify>
+          <div class="form__group">
+            <label for="hoten">Họ và tên</label>
+            <input type="text" id="hoten" name="txtHoten" value="<?php echo $ht ?>" required>
+          </div>
+          <div class="form__group">
+            <label for="sodienthoai">Số điện thoại</label>
+            <input type="text" id="sodienthoai" name="txtSodienthoai" value="<?php echo $sdt ?>" required>
+          </div>
+          <div class="form__group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="txtEmail" value="<?php echo $em ?>" required>
+          </div>
+          <div class="form__group">
+            <label for="chude">Chủ đề</label>
+            <input type="text" id="chude" name="txtChude" value="<?php echo $cd ?>" required>
+          </div>
+          
+          <div class="form__group form__group__full">
+            <label for="tinnhan">Tin nhắn</label>
+            <textarea name="txtTinnhan" id="tinnhan" cols="30" rows="10" value="<?php echo $tn ?>" required></textarea>
+          </div>
+          <button type="submit" class="btn primary-btn" name="btnLuu">Gửi liên hệ</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+        <!-- End Contact form section -->
+
     <!-- footer -->
       <Footer>
         <div class="container">
@@ -201,19 +162,19 @@
                     </h3>
                     <ol class="footer__text">
                         <li>
-                            <a href="index.html">Home</a>
+                            <a href="index.php">Home</a>
                         </li>
                         <li>
                             <a href="menu.html">Menu</a>
                         </li>
                         <li>
-                            <a href="booking.html">Đặt bàn</a>
+                            <a href="index.html">Đặt bàn</a>
                         </li>
                         <li>
                             <a href="about.html">Về chúng tôi</a>
                         </li>
                         <li>
-                            <a href="contact.html">Liên hệ</a>
+                            <a href="contact.php">Liên hệ</a>
                         </li>
                         <li>
                             <a href="#">Chính sách bảo mật</a>
@@ -227,7 +188,7 @@
                     </h3>
                     <ol class="footer__text">
                         <li>
-                            <a href="contact.html">Liên hệ</a>
+                            <a href="contact.php">Liên hệ</a>
                         </li>
                         <li>
                             <a href="#">Trung tâm hỗ trợ</a>

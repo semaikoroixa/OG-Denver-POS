@@ -20,7 +20,7 @@ if (isset($_POST['ChangeProfile'])) {
     $err = "Vui lòng thử lại sau!";
   }
 }
-if (isset($_POST['changePassword'])) {
+if (isset($_POST['submit'])) {
 
   //Change Password
   $error = 0;
@@ -43,7 +43,7 @@ if (isset($_POST['changePassword'])) {
     $err = "Mật khẩu mới nhập lại không được bỏ trống!";
   }
 
-  if (!$error) {
+  if ($error!=1) {
     $admin_id = $_SESSION['admin_id'];
     $sql = "SELECT * FROM rpos_admin   WHERE admin_id = '$admin_id'";
     $res = mysqli_query($mysqli, $sql);
@@ -65,7 +65,7 @@ if (isset($_POST['changePassword'])) {
 
         //declare a varible which will be passed to alert function
         if ($stmt) {
-          $success = "Password Changed" && header("refresh:1; url=dashboard.php");
+          $success = "Mật khẩu đã đổi!" && header("refresh:1; url=dashboard.php");
         } else {
           $err = "Vui lòng thử lại sau!";
         }
@@ -188,7 +188,7 @@ require_once('partials/_head.php');
                 </div>
               </form>
               <hr>
-              <form method =" post">
+              <form method ="post">
                             <h6 class="heading-small text-muted mb-4">Đổi mật khẩu</h6>
                             <div class="pl-lg-4">
                               <div class="row">
@@ -215,7 +215,7 @@ require_once('partials/_head.php');
 
                                 <div class="col-lg-12">
                                   <div class="form-group">
-                                    <input type="submit" id="input-email" name="changePassword" class="btn btn-success form-control-alternative" value="Change Password">
+                                    <input type="submit" id="input-email" name="submit" class="btn btn-success form-control-alternative" value="Đổi mật khẩu">
                                   </div>
                                 </div>
                               </div>

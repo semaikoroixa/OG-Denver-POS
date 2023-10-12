@@ -44,7 +44,7 @@ require_once('partials/_head.php');
                                         <th scope="col">Số tiền</th>
                                         <th class="text-success" scope="col">Ngày thanh toán</th>
                                     </tr>
-                                </thead><!-- For more projects: Visit codeastro.com  -->
+                                </thead>
                                 <tbody>
                                     <?php
                                     $ret = "SELECT * FROM  rpos_payments ORDER BY `created_at` DESC ";

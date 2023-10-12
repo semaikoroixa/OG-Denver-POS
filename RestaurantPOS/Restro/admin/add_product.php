@@ -62,7 +62,7 @@ require_once('partials/_head.php');
           <div class="card shadow">
             <div class="card-header border-0">
               <h3>Điền thông tin</h3>
-            </div><!-- For more projects: Visit codeastro.com  -->
+            </div>
             <div class="card-body">
               <form method="POST" enctype="multipart/form-data">
                 <div class="form-row">

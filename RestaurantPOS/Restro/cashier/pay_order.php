@@ -102,7 +102,7 @@ require_once('partials/_head.php');
                   <div class="col-md-6">
                     <label>Phương thức thanh toán</label>
                     <select class="form-control" name="pay_method">
-                        <option selected>Tiền mặt</option>
+                        <option selected>Cash</option>
                         <option>Paypal</option>
                     </select>
                   </div>

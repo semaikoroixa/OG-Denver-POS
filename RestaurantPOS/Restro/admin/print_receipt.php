@@ -125,7 +125,7 @@ while ($order = $res->fetch_object()) {
                 </div>
                 <div class="well col-xs-10 col-sm-10 col-md-6 col-xs-offset-1 col-sm-offset-1 col-md-offset-3">
                     <button id="print" onclick="printContent('Receipt');" class="btn btn-success btn-lg text-justify btn-block">
-                        Print <span class="fas fa-print"></span>
+                        In <span class="fas fa-print"></span>
                     </button>
                 </div>
             </div>

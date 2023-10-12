@@ -45,7 +45,7 @@
                   <li><a class="nav__link" href="./index.php">Home</a></li>
                   <li><a class="nav__link" href="./menu.html">Menu</a></li>
                   <li><a class="nav__link" href="./about.html">Thông tin</a></li>
-                  <li><a class="nav__link" href="./contact.html">Liên hệ</a></li>
+                  <li><a class="nav__link" href="./contact.php">Liên hệ</a></li>
                   <li><a href="index.html" class="btn primary-btn">Đăng nhập</a></li>
                 </div>
               </ul>

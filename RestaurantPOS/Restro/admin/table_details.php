@@ -64,14 +64,20 @@ require_once('partials/_head.php');
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    
                                     <?php
-                                    $ret = "SELECT * FROM  rpos_orders WHERE order_status =''  ORDER BY `rpos_orders`.`created_at` DESC  ";
+                                     $full_total=0;
+                                    if (isset($_GET['customer_id'])) {
+                                      
+                                        $customer_id = $_GET['customer_id'];
+                                    $ret = "SELECT * FROM  rpos_orders WHERE order_status ='' and customer_id='$customer_id' ORDER BY `rpos_orders`.`created_at` DESC  ";
                                     $stmt = $mysqli->prepare($ret);
                                     $stmt->execute();
                                     $res = $stmt->get_result();
                                     while ($order = $res->fetch_object()) {
                                         // $total = ($order->prod_price * $order->prod_qty);
                                         $total = (floatval($order->prod_price) * floatval($order->prod_qty));
+                                        $full_total+=$total;
                                     ?>
                                         <tr>
                                             <th class="text-success" scope="row"><?php echo $order->order_code; ?></th>
@@ -95,8 +101,54 @@ require_once('partials/_head.php');
                                                 </a>
                                             </td>
                                         </tr>
-                                    <?php } ?>
+                                    <?php }
+                                }
+                                
+                             else {
+                                
+                                echo "Không có thông tin khách hàng được cung cấp.";
+                            } ?>
+                                    
                                 </tbody>
+                                <div class="table-responsive">
+                            <table class="table align-items-center table-flush">
+                                <thead class="thead-light">
+                                    <tr>
+                                        <th scope="col">Mã</th>
+                                        <th scope="col">Khách Hàng</th>
+                                        <th scope="col">Sản Phẩm</th>
+                                        <th scope="col">Tổng tiền</th>
+                                        <th scope="col">Thanh toán bàn</th>
+                                        <th scope="col"></th>
+                                    </tr>
+                                </thead>
+                                <?php 
+                             
+                                ?>
+                                <tbody>
+                                    
+                                        <tr>
+                                            <th></th>
+                                            <td></td>
+                                            <td></td>
+                                            <td>$ <?php echo $full_total; ?></td>
+                                            <td>
+                                            <a href="pay_table.php?full_total=<?php echo $full_total;?>&customer_id=<?php echo $customer_id?>&order_status=Paid">
+                                                    <button class="btn btn-success">
+                                                        <i class="fas fa-handshake"></i>
+                                                        Thanh toán bàn
+                                                    </button>
+                                                </a></td>
+                                            
+                                        </tr>
+                                        <tr></tr>
+                                    <?php 
+                                    
+                                    ?>
+                                </tbody>
+                                
+                            </table>
+                        </div>
                             </table>
                         </div>
                     </div>

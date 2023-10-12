@@ -104,7 +104,12 @@ while ($admin = $res->fetch_object()) {
           </li>
           <li class="nav-item">
             <a class="nav-link" href="orders.php">
-              <i class="ni ni-cart text-primary"></i> Đơn đặt
+              <i class="ni ni-cart text-primary"></i> Đặt đơn
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="table_orders.php">
+              <i class="ni ni-tv-2 text-primary"></i> Quản lý bàn
             </a>
           </li>
           <li class="nav-item">

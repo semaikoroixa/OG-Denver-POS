@@ -32,49 +32,48 @@ require_once('partials/_head.php');
       <div class="row">
         <div class="col">
           <div class="card shadow">
-            <div class="card-header border-0">
-              Chọn bất kì món ăn nào để đặt đơn
+            <div class="card-header border-0" style="text-align:center">
+              DANH SÁCH BÀN TRỐNG
             </div>
             <div class="table-responsive">
               <table class="table align-items-center table-flush">
                 <thead class="thead-light">
                   <tr>
-                    <th scope="col"><b>Hình ảnh</b></th>
-                    <th scope="col"><b>Code</b></th>
-                    <th scope="col"><b>Tên</b></th>
-                    <th scope="col"><b>Giá</b></th>
-                    <th scope="col"><b>Action</b></th>
+                    <th scope="col"><b>Số bàn</b></th>
+                    <th scope="col"><b>ID Khách</b></th>
+                    <th scope="col"><b>Tên khách đặt</b></th>
+                    <th scope="col"><b>Trạng thái</b></th>
+                    <th scope="col"><b>Số người</b></th>
+                    <th scope="col"><b>Thực hiện</b></th>
                   </tr>
                 </thead>
                 <tbody>
                   <?php
-                  $ret = "SELECT * FROM  rpos_products ";
+                  $customer_id = $_SESSION['customer_id'];
+    
+                  $ret = "SELECT * FROM  rpos_table WHERE table_status='Trống'";
                   $stmt = $mysqli->prepare($ret);
                   $stmt->execute();
                   $res = $stmt->get_result();
-                  while ($prod = $res->fetch_object()) {
+                  while ($table = $res->fetch_assoc()) {
                   ?>
                     <tr>
+                    <td><?php echo $table['table_id']; ?></td>
+                      <td><?php echo $table['customer_id'] ?></td>
+                      <td><?php echo$table['customer_name'] ?></td>
+                      <td> <?php echo $table['table_status'] ?></td>
+                      <td> <?php echo $table['capacity'] ?></td>
                       <td>
-                        <?php
-                        if ($prod->prod_img) {
-                          echo "<img src='assets/img/products/$prod->prod_img' height='60' width='60 class='img-thumbnail'>";
-                        } else {
-                          echo "<img src='assets/img/products/default.jpg' height='60' width='60 class='img-thumbnail'>";
-                        }
-
-                        ?>
-                      </td>
-                      <td><?php echo $prod->prod_code; ?></td>
-                      <td><?php echo $prod->prod_name; ?></td>
-                      <td>$ <?php echo $prod->prod_price; ?></td>
-                      <td>
-                        <a href="make_oder.php?prod_id=<?php echo $prod->prod_id; ?>&prod_name=<?php echo $prod->prod_name; ?>&prod_price=<?php echo $prod->prod_price; ?>">
-                          <button class="btn btn-sm btn-warning">
-                            <i class="fas fa-cart-plus"></i>
-                            Đặt món
+                        <a href="make_table.php?table_id=<?php echo $table['table_id']?>">
+                        <button class="btn btn-sm btn-warning">
+                        <i class="fa fa-table" aria-hidden="true"></i>
+                            Đặt bàn
                           </button>
                         </a>
+                        <button class="btn btn-sm btn-warning">
+                        <i class="fa fa-ban" aria-hidden="true"></i>
+                            Hủy bàn
+                          </button>
                       </td>
                     </tr>
                   <?php } ?>
@@ -95,5 +94,4 @@ require_once('partials/_head.php');
   require_once('partials/_scripts.php');
   ?>
 </body>
-
 </html>

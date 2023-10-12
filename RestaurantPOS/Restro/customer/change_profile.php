@@ -5,7 +5,7 @@ include('config/checklogin.php');
 include('config/code-generator.php');
 
 check_login();
-if (isset($_POST['ChangeProfile'])) {
+if (isset($_POST['changeHoSo'])) {
   //Prevent Posting Blank Values
   if (empty($_POST["customer_phoneno"]) || empty($_POST["customer_name"]) || empty($_POST['customer_email'])) {
     $err = "Không được bỏ trống!";
@@ -187,7 +187,7 @@ require_once('partials/_head.php');
                                             <div class=" col-lg-6">
                                                 <div class="form-group">
                                                     <label class="form-control-label" for="input-email">SĐT</label>
-                                                    <input type="text" id="input-email" value="<?php echo $customer->customer_phoneno; ?>" name="customer_phone" class="form-control form-control-alternative">
+                                                    <input type="text" id="input-email" value="<?php echo $customer->customer_phoneno; ?>" name="customer_phoneno" class="form-control form-control-alternative">
                                                 </div>
                                             </div>
                                             <div class="col-lg-12">
@@ -199,13 +199,13 @@ require_once('partials/_head.php');
                                         </div>
                                         <div class="col-lg-12">
                                             <div class="form-group">
-                                                <input type="submit" id="input-email" name="ChangeProfile" class="btn btn-success form-control-alternative" value="Submit"">
+                                                <input type="submit" id="input-email" name="changeHoSo" class="btn btn-success form-control-alternative" value="Submit">
                                             </div>
                                         </div>
                                     </div>
                                 </form>
                                 <hr>
-                                <form method =" post">
+                                <form method ="post">
                                         <h6 class="heading-small text-muted mb-4">Đổi mật khẩu</h6>
                                         <div class="pl-lg-4">
                                             <div class="row">
