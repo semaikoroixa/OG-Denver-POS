@@ -134,6 +134,11 @@ while ($staff_id = $res->fetch_object()) {
               <i class="fas fa-funnel-dollar"></i> Thanh toán
             </a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="doanhthu.php">
+            <i class="fas fa-file-invoice-dollar"></i> Doanh thu
+            </a>
+          </li>
         </ul>
         <hr class="my-3">
         <ul class="navbar-nav mb-md-3">

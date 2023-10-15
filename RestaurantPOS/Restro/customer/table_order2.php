@@ -70,11 +70,7 @@ require_once('partials/_head.php');
                             Đặt bàn
                           </button>
                         </a>
-                        <button class="btn btn-sm btn-warning">
-                        <i class="fa fa-ban" aria-hidden="true"></i>
-                            Hủy bàn
-                          </button>
-                      </td>
+                        
                     </tr>
                   <?php } ?>
                 </tbody>

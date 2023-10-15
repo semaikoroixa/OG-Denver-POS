@@ -50,6 +50,10 @@ require_once('partials/_head.php');
                 <i class="fas fa-user-plus"></i>
                 Thêm KH mới
               </a>
+              <a href="search_customer.php" class="btn btn-outline-success">
+                <i class="fas fa-user-plus"></i>
+                Tìm kiếm KH
+              </a>
             </div>
             <div class="table-responsive">
               <table class="table align-items-center table-flush">

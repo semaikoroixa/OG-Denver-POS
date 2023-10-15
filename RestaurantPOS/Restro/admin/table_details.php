@@ -114,9 +114,9 @@ require_once('partials/_head.php');
                             <table class="table align-items-center table-flush">
                                 <thead class="thead-light">
                                     <tr>
-                                        <th scope="col">Mã</th>
-                                        <th scope="col">Khách Hàng</th>
-                                        <th scope="col">Sản Phẩm</th>
+                                        <th scope="col">-----------------</th>
+                                        <th scope="col">-----------------</th>
+                                        <th scope="col">-----------------</th>
                                         <th scope="col">Tổng tiền</th>
                                         <th scope="col">Thanh toán bàn</th>
                                         <th scope="col"></th>

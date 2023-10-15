@@ -5,6 +5,22 @@ include('config/checklogin.php');
 check_login();
 
 require_once('partials/_head.php');
+if (isset($_GET['cancel'])) {
+  $id = intval($_GET['cancel']);
+  $table_status = 'Trống';
+  $adn = "UPDATE rpos_table SET table_status = ?,customer_id=null,customer_name=null,capacity=null WHERE  table_id = ?";
+  $stmt = $mysqli->prepare($adn);
+  $stmt->bind_param('ss',$table_status,$id);
+  $stmt->execute();
+  $stmt->close();
+  if ($stmt) {
+      $success = "Đã xóa bàn" && header("refresh:1; url=table_orders.php");
+  } else {
+      $err = "Vui lòng thử lại sau";  
+  }
+  echo "<script>alert('Xóa bàn thành công!')</script>";
+}
+require_once('partials/_head.php');
 ?>
 
 <body>
@@ -69,7 +85,7 @@ require_once('partials/_head.php');
                       <td> <?php echo $table['table_status'] ?></td>
                       <td> <?php echo $table['capacity'] ?></td>
                       <td>
-                       
+                      <a href="table_orders.php?cancel=<?php echo $table['table_id']?>">
                         <button class="btn btn-sm btn-warning">
                         <i class="fa fa-ban" aria-hidden="true"></i>
                             Hủy bàn

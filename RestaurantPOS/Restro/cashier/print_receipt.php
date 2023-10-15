@@ -38,7 +38,7 @@ $stmt = $mysqli->prepare($ret);
 $stmt->execute();
 $res = $stmt->get_result();
 while ($order = $res->fetch_object()) {
-    $total = (floatval($order->prod_price) * floatval($order->prod_qty));
+    $total = ($order->prod_price * $order->prod_qty);
 
 ?>
 
@@ -90,30 +90,10 @@ while ($order = $res->fetch_object()) {
                                     <td class="col-md-1 text-center">$<?php echo $total; ?></td>
                                 </tr>
                                 <tr>
-                                    <td>   </td>
-                                    <td>   </td>
+                                    <td></td>
+                                    <td></td>
                                     <td class="text-right">
-                                        <p>
-                                            <strong>Giá: </strong>
-                                        </p>
-                                        <p>
-                                            <strong>Thuế: </strong>
-                                        </p>
-                                    </td>
-                                    <td class="text-center">
-                                        <p>
-                                            <strong>$<?php echo $total; ?></strong>
-                                        </p>
-                                        <p>
-                                            <strong>14%</strong>
-                                        </p>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>   </td>
-                                    <td>   </td>
-                                    <td class="text-right">
-                                        <h4><strong>Tổng: </strong></h4>
+                                        <h4><strong>Tổng:</strong></h4>
                                     </td>
                                     <td class="text-center text-danger">
                                         <h4><strong>$<?php echo $total; ?></strong></h4>

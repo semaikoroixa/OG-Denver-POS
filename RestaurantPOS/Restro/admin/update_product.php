@@ -17,6 +17,16 @@ if (isset($_POST['UpdateProduct'])) {
     move_uploaded_file($_FILES["prod_img"]["tmp_name"], "assets/img/products/" . $_FILES["prod_img"]["name"]);
     $prod_desc = $_POST['prod_desc'];
     $prod_price = $_POST['prod_price'];
+                // Check if staff_email already exists in the database
+                $checkQuery = "SELECT * FROM rpos_products WHERE prod_name = ?";
+                $checkStmt = $mysqli->prepare($checkQuery);
+                $checkStmt->bind_param('s', $prod_name);
+                $checkStmt->execute();
+                $checkResult = $checkStmt->get_result();
+                if ($checkResult->num_rows > 0) {
+                  $err = "Món ăn đã tồn tại trong hệ thống. Vui lòng tạo một tên món ăn khác.";
+                }
+                else{
 
     //Insert Captured information to a database table
     $postQuery = "UPDATE rpos_products SET prod_code =?, prod_name =?, prod_img =?, prod_desc =?, prod_price =? WHERE prod_id = ?";
@@ -31,6 +41,7 @@ if (isset($_POST['UpdateProduct'])) {
       $err = "Vui lòng thử lại sau!";
     }
   }
+}
 }
 require_once('partials/_head.php');
 ?>

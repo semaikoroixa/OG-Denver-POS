@@ -16,6 +16,16 @@ if (isset($_POST['addCustomer'])) {
     $customer_email = $_POST['customer_email'];
     $customer_password = sha1(md5($_POST['customer_password'])); //Hash This 
     $customer_id = $_POST['customer_id'];
+    // Check if customer_email or customer_id already exists in the database
+    $checkQuery = "SELECT * FROM rpos_customers WHERE customer_email = ? OR customer_id = ?";
+    $checkStmt = $mysqli->prepare($checkQuery);
+    $checkStmt->bind_param('ss', $customer_email, $customer_id);
+    $checkStmt->execute();
+    $checkResult = $checkStmt->get_result();
+
+    if ($checkResult->num_rows > 0) {
+        $err = "Email đã tồn tại trong hệ thống. Vui lòng chọn một địa chỉ email khác.";
+    } else {
 
     //Insert Captured information to a database table
     $postQuery = "INSERT INTO rpos_customers (customer_id, customer_name, customer_phoneno, customer_email, customer_password) VALUES(?,?,?,?,?)";
@@ -30,6 +40,7 @@ if (isset($_POST['addCustomer'])) {
       $err = "Vui lòng thử lại";
     }
   }
+}
 }
 
 require_once('partials/_head.php');

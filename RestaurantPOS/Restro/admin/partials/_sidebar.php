@@ -103,6 +103,11 @@ while ($admin = $res->fetch_object()) {
             </a>
           </li>
           <li class="nav-item">
+            <a class="nav-link" href="nha_cung_cap.php">
+              <i class="ni ni-box-2 text-primary"></i>Nhà cung cấp
+            </a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link" href="orders.php">
               <i class="ni ni-cart text-primary"></i> Đặt đơn
             </a>
@@ -112,11 +117,22 @@ while ($admin = $res->fetch_object()) {
               <i class="ni ni-tv-2 text-primary"></i> Quản lý bàn
             </a>
           </li>
+          <!-- <li class="nav-item">
+            <a class="nav-link" href="event.php">
+              <i class="ni ni-tv-2 text-primary"></i> Events
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="storage_nhap.php">
+              <i class="ni ni-tv-2 text-primary"></i> Nhập kho
+            </a> -->
+          </li>
           <li class="nav-item">
             <a class="nav-link" href="payments.php">
               <i class="ni ni-credit-card text-primary"></i> Thanh toán
             </a>
           </li>
+
           <li class="nav-item">
             <a class="nav-link" href="receipts.php">
               <i class="fas fa-file-invoice-dollar text-primary"></i> Hóa đơn
@@ -137,6 +153,11 @@ while ($admin = $res->fetch_object()) {
           <li class="nav-item">
             <a class="nav-link" href="payments_reports.php">
               <i class="fas fa-funnel-dollar"></i> Thanh toán
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="doanhthu.php">
+            <i class="fas fa-file-invoice-dollar"></i> Doanh thu
             </a>
           </li>
         </ul>

@@ -16,6 +16,16 @@ if (isset($_POST['UpdateStaff'])) {
     $staff_email = $_POST['staff_email'];
     $staff_password = $_POST['staff_password'];
     $update = $_GET['update'];
+        // Check if staff_email already exists in the database (excluding the current staff being updated)
+        $checkQuery = "SELECT * FROM rpos_staff WHERE staff_email = ? AND staff_id != ?";
+        $checkStmt = $mysqli->prepare($checkQuery);
+        $checkStmt->bind_param('si', $staff_email, $update);
+        $checkStmt->execute();
+        $checkResult = $checkStmt->get_result();
+
+        if ($checkResult->num_rows > 0) {
+            $err = "Email đã tồn tại trong hệ thống. Vui lòng chọn một địa chỉ email khác.";
+        } else {
 
     //Insert Captured information to a database table
     $postQuery = "UPDATE rpos_staff SET  staff_number =?, staff_name =?, staff_email =?, staff_password =? WHERE staff_id =?";
@@ -30,6 +40,7 @@ if (isset($_POST['UpdateStaff'])) {
       $err = "Vui lòng thử lại sau";
     }
   }
+}
 }
 require_once('partials/_head.php');
 ?>

@@ -16,7 +16,11 @@ if (isset($_POST['make'])) {
     $customer_name = $_POST['customer_name'];
     $capacity=$_POST['table_cap'];
     $status_table = "Đã đặt";
-
+    if (!is_numeric($capacity) || $capacity > 10|| $capacity <1) {
+      $err = "Vui lòng nhập số người từ 1 đến 10.";
+      $capacity = ""; // Xóa giá trị để người dùng nhập lại
+     }
+     else{
     $postQuery = "UPDATE rpos_table SET customer_name=?, customer_id=?, table_status=?, capacity=? WHERE table_id=?";
     $postStmt = $mysqli->prepare($postQuery);
     //bind paramaters
@@ -32,6 +36,7 @@ if (isset($_POST['make'])) {
       $err = "Vui lòng thử lại sau";
     }
   }
+}
 }
 }
 require_once('partials/_head.php');

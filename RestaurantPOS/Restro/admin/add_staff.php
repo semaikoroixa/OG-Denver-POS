@@ -16,6 +16,17 @@ if (isset($_POST['addStaff'])) {
     $staff_email = $_POST['staff_email'];
     $staff_password = sha1(md5($_POST['staff_password']));
 
+            // Check if staff_email already exists in the database
+            $checkQuery = "SELECT * FROM rpos_staff WHERE staff_email = ?";
+            $checkStmt = $mysqli->prepare($checkQuery);
+            $checkStmt->bind_param('s', $staff_email);
+            $checkStmt->execute();
+            $checkResult = $checkStmt->get_result();
+            if ($checkResult->num_rows > 0) {
+              $err = "Email đã tồn tại trong hệ thống. Vui lòng chọn một địa chỉ email khác.";
+            }
+            else{
+
     //Insert Captured information to a database table
     $postQuery = "INSERT INTO rpos_staff (staff_number, staff_name, staff_email, staff_password) VALUES(?,?,?,?)";
     $postStmt = $mysqli->prepare($postQuery);
@@ -23,12 +34,13 @@ if (isset($_POST['addStaff'])) {
     $rc = $postStmt->bind_param('ssss', $staff_number, $staff_name, $staff_email, $staff_password);
     $postStmt->execute();
     //declare a varible which will be passed to alert function
-    if ($postStmt) {
+    if ($postStmt->affected_rows > 0) {
       $success = "Nhân viên đã thêm" && header("refresh:1; url=hrm.php");
     } else {
       $err = "Vui lòng thử lại";
     }
   }
+}
 }
 require_once('partials/_head.php');
 ?>

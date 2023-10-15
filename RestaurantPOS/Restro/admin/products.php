@@ -7,7 +7,7 @@ if (isset($_GET['delete'])) {
   $id = intval($_GET['delete']);
   $adn = "DELETE FROM  rpos_products  WHERE  prod_id = ?";
   $stmt = $mysqli->prepare($adn);
-  $stmt->bind_param('s', $id);
+  $stmt->bind_param('i', $id);
   $stmt->execute();
   $stmt->close();
   if ($stmt) {
@@ -48,6 +48,10 @@ require_once('partials/_head.php');
               <a href="add_product.php" class="btn btn-outline-success">
                 <i class="fas fa-utensils"></i>
                 Thêm Sản phẩm mới
+              </a>
+              <a href="search_product.php" class="btn btn-outline-success">
+                <i class="fas fa-utensils"></i>
+                Tìm kiếm
               </a>
             </div>
             <div class="table-responsive">

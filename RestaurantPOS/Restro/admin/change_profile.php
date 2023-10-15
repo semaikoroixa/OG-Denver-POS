@@ -53,7 +53,10 @@ if (isset($_POST['submit'])) {
         $err =  "Vui lòng nhập đúng mật khẩu cũ!";
       } elseif ($new_password != $confirm_password) {
         $err = "Mật khẩu nhập lại không đúng!";
-      } else {
+      } elseif ($new_password == $row['admin_password']) {
+        $err = "Mật khẩu mới trùng với mật khẩu cũ!";
+      }
+      else {
 
         $new_password  = sha1(md5($_POST['new_password']));
         //Insert Captured information to a database table
