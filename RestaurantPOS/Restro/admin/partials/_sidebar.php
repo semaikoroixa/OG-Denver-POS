@@ -117,15 +117,15 @@ while ($admin = $res->fetch_object()) {
               <i class="ni ni-tv-2 text-primary"></i> Quản lý bàn
             </a>
           </li>
-          <!-- <li class="nav-item">
+           <li class="nav-item">
             <a class="nav-link" href="event.php">
-              <i class="ni ni-tv-2 text-primary"></i> Events
+            <i class="fa fa-calendar text-primary"></i>Sự kiện
             </a>
           </li>
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a class="nav-link" href="storage_nhap.php">
               <i class="ni ni-tv-2 text-primary"></i> Nhập kho
-            </a> -->
+            </a>\ -->
           </li>
           <li class="nav-item">
             <a class="nav-link" href="payments.php">

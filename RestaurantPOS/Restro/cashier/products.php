@@ -53,7 +53,7 @@ require_once('partials/_head.php');
                         </div>
                         <div class="card-header border-0">
               <a href="search_product.php" class="btn btn-outline-success">
-                <i class="fas fa-utensils"></i>
+                <i class="fas fa-search"></i>
                 Tìm kiếm
               </a>
             </div>

@@ -50,7 +50,7 @@ require_once('partials/_head.php');
                 Thêm Sản phẩm mới
               </a>
               <a href="search_product.php" class="btn btn-outline-success">
-                <i class="fas fa-utensils"></i>
+                <i class="fas fa-search"></i>
                 Tìm kiếm
               </a>
             </div>

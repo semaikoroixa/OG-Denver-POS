@@ -47,7 +47,7 @@ require_once('partials/_head.php');
           <div class="card shadow">
             <div class="card-header border-0">
               <a href="add_staff.php" class="btn btn-outline-success"><i class="fas fa-user-plus"></i>Thêm nhân viên mới</a>
-              <a href="search_staff.php" class="btn btn-outline-success"><i class="fas fa-user-plus"></i>Tìm kiếm</a>
+              <a href="search_staff.php" class="btn btn-outline-success"><i class="fas fa-search"></i>Tìm kiếm</a>
             </div>
             
             <div class="table-responsive">

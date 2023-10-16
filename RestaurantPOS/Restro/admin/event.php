@@ -5,14 +5,14 @@ include('config/checklogin.php');
 check_login();
 //Delete Staff
 if (isset($_GET['delete'])) {
-  $id = $_GET['delete'];
-  $adn = "DELETE FROM  rpos_event  WHERE  event_id = ?";
+  $event_code = $_GET['delete'];
+  $adn = "DELETE FROM  rpos_event  WHERE  event_code = ?";
   $stmt = $mysqli->prepare($adn);
-  $stmt->bind_param('s', $id);
+  $stmt->bind_param('s', $event_code);
   $stmt->execute();
   $stmt->close();
   if ($stmt) {
-    $success = "Đã xóa" && header("refresh:1; url=event.php");
+    $success = "Đã xóa" && header("refresh:1; url=events.php");
   } else {
     $err = "Thử lại sau";
   }
@@ -48,20 +48,21 @@ require_once('partials/_head.php');
         <div class="col">
           <div class="card shadow">
             <div class="card-header border-0">
-              <a href="add_event.php" class="btn btn-outline-success">
+              <a href="add_events.php" class="btn btn-outline-success">
                 <i class="fas fa-user-plus"></i>
                 Thêm Sự Kiện mới
               </a>
 
-              <a href="search_event.php" class="btn btn-outline-success">
-                <i class="fas fa-user-plus"></i>
-                Tìm kiếm Sự Kiện
+              <a href="search_events.php" class="btn btn-outline-success">
+                <i class="fa fa-search"></i>
+                Tìm kiếm
               </a>
             </div>
             <div class="table-responsive">
               <table class="table align-items-center table-flush">
                 <thead class="thead-light">
                   <tr>
+                    <th scope="col">Mã sự kiện</th>
                     <th scope="col">Tên sự kiện</th>
                     <th scope="col">Mô tả</th>
                     <th scope="col">Ngày bắt đầu</th>
@@ -75,22 +76,23 @@ require_once('partials/_head.php');
                   $stmt = $mysqli->prepare($ret);
                   $stmt->execute();
                   $res = $stmt->get_result();
-                  while ($cust = $res->fetch_object()) {
+                  while ($event = $res->fetch_object()) {
                   ?>
                     <tr>
-                      <td><?php echo $cust->event_name; ?></td>
-                      <td><?php echo $cust->event_des; ?></td>
-                      <td><?php echo $cust->event_start; ?></td>
-                      <td><?php echo $cust->event_end; ?></td>
+                      <td><?php echo $event->event_code; ?></td>
+                      <td><?php echo $event->event_name; ?></td>
+                      <td><?php echo $event->event_des; ?></td>
+                      <td><?php echo $event->event_start; ?></td>
+                      <td><?php echo $event->event_end; ?></td>
                       <td>
-                        <a href="event.php?delete=<?php echo $cust->event_id; ?>">
+                        <a href="events.php?delete=<?php echo $event->event_code; ?>">
                           <button class="btn btn-sm btn-danger">
                             <i class="fas fa-trash"></i>
                            Xóa
                           </button>
                         </a>
 
-                        <a href="update_event.php?update=<?php echo $cust->event_id; ?>">
+                        <a href="update_events.php?update=<?php echo $event->event_code; ?>">
                           <button class="btn btn-sm btn-primary">
                             <i class="fas fa-user-edit"></i>
                             Cập nhật

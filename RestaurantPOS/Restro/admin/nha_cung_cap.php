@@ -50,6 +50,10 @@ require_once('partials/_head.php');
                 <i class="fas fa-user-plus"></i>
                 Thêm nhà cung cấp mới
               </a>
+              <a href="search_ncc.php" class="btn btn-outline-success">
+                <i class="fa fa-search"></i>
+                Tìm kiếm
+              </a>
             </div>
             <div class="table-responsive">
               <table class="table align-items-center table-flush">

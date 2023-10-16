@@ -34,6 +34,26 @@ require_once('partials/_head.php');
                         <div class="card-header border-0">
                             Báo cáo thanh toán
                         </div>
+                        <div class="col-md-6">
+                                    <form action="" method="GET" class="form-inline float-right">
+                                    <div class="mb-2">
+                                            Từ
+                                        </div>
+                                        <div class="form-group mx-sm-3 mb-2">
+                                            <label for="start_date" class="sr-only">Ngày bắt đầu</label>
+                                            <input type="date" class="form-control" id="start_date" name="start_date" placeholder="Ngày bắt đầu" required>
+                                        </div>
+                                        <div class="mb-2">
+                                            Đến
+                                        </div>
+                                        <div class="form-group mx-sm-3 mb-2">
+                                            <label for="end_date" class="sr-only">Ngày kết thúc</label>
+                                            <input type="date" class="form-control" id="end_date" name="end_date"  placeholder="Ngày kết thúc" required>
+                                        </div>
+                                        <button type="submit" class="btn btn-danger mb-2">Lọc</button>
+                                        
+                                    </form>
+                                </div>
                         <div class="table-responsive">
                             <table class="table align-items-center table-flush">
                                 <thead class="thead-light">
@@ -47,8 +67,19 @@ require_once('partials/_head.php');
                                 </thead>
                                 <tbody>
                                     <?php
-                                    $customer_id = $_SESSION['customer_id'];
-                                    $ret = "SELECT * FROM  rpos_payments WHERE customer_id ='$customer_id' ORDER BY `created_at` DESC ";
+                                      $customer_id = $_SESSION['customer_id'];
+                                    if (isset($_GET['start_date']) && isset($_GET['end_date'])) {
+                                        $start_date = date('Y-m-d', strtotime($_GET['start_date']));
+                                        $end_date = date('Y-m-d', strtotime($_GET['end_date']));
+
+                                        // Lọc dữ liệu theo ngày bắt đầu và ngày kết thúc
+                                        $ret = "SELECT * FROM  rpos_payments   WHERE customer_id ='$customer_id' and DATE(created_at) BETWEEN '$start_date' AND '$end_date' ORDER BY created_at DESC";
+                                    } else {
+                                        // Trường hợp không có ngày bắt đầu và ngày kết thúc, lấy tất cả dữ liệu
+                                        $ret = "SELECT * FROM  rpos_payments WHERE customer_id ='$customer_id' ORDER BY `created_at` DESC ";
+                                    }
+                                  
+                           
                                     $stmt = $mysqli->prepare($ret);
                                     $stmt->execute();
                                     $res = $stmt->get_result();

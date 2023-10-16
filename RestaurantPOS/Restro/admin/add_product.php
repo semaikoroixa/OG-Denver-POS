@@ -36,7 +36,7 @@ if (isset($_POST['addProduct'])) {
     $postStmt->execute();
     //declare a varible which will be passed to alert function
     if ($postStmt) {
-      $success = "Sản phẩm đã thêm" && header("refresh:1; url=add_product.php");
+      $success = "Sản phẩm đã thêm" && header("refresh:1; url=product.php");
     } else {
       $err = "Vui lòng thử lại";
     }

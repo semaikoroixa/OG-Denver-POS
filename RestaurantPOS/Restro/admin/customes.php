@@ -51,7 +51,7 @@ require_once('partials/_head.php');
                 Thêm KH mới
               </a>
               <a href="search_customer.php" class="btn btn-outline-success">
-                <i class="fas fa-user-plus"></i>
+                <i class="fas fa-search"></i>
                 Tìm kiếm KH
               </a>
             </div>
